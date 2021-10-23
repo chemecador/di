@@ -1,0 +1,24 @@
+package ventana;
+
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+public class Ventana extends JFrame {
+
+	public Ventana() {
+		this.setSize(400, 400);
+		this.setBounds(400,400,200,200);
+		this.setTitle("Hola mundo");
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setBackground(Color.ORANGE);
+		this.getContentPane().setBackground(Color.ORANGE);
+	}
+
+	public static void main(String[] args) {
+
+		Ventana ventana = new Ventana();
+		ventana.setVisible(true);
+	}
+
+}
