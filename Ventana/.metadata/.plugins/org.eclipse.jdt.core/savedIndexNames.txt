@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+C:\Users\alexm\Documents\GS\di\Ventana\.metadata\.plugins\org.eclipse.jdt.core
-3424958164.index
-890647443.index
