@@ -15,6 +15,10 @@ public class Escaparate extends JFrame implements ActionListener {
     JPanel panelTexto;
     JLabel etiqueta;
 
+    Producto balon;
+    Producto equipacion;
+    Producto peto;
+
     JComboBox cantidadBalones;
     JComboBox cantidadCamisetas;
     JComboBox cantidadPantalones;
@@ -34,6 +38,9 @@ public class Escaparate extends JFrame implements ActionListener {
     public Escaparate() {
         precio = 0;
         initComponents();
+        balon = new Producto();
+        equipacion = new Producto();
+        peto = new Producto();
 
     }
 
@@ -96,10 +103,12 @@ public class Escaparate extends JFrame implements ActionListener {
     private void setImagenes() {
         JLabel imagen = new JLabel();
         ImageIcon pelota = new ImageIcon("pelota.jpg");
+
         imagen.setBounds(0, 200, 100, 100);
         imagen.setIcon(new ImageIcon(pelota.getImage()));
         imagen.setIcon(new ImageIcon(pelota.getImage().
                 getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_SMOOTH)));
+
 
         panelImagenes.add(Box.createRigidArea(new Dimension(30, 70)));
         panelImagenes.add(imagen);
@@ -141,12 +150,13 @@ public class Escaparate extends JFrame implements ActionListener {
     private void setTexto() {
 
         //------------------ balones
-        JLabel balon = new JLabel("Balones");
-        balon.setFont(new Font("Tahoma", Font.BOLD, 20));
+        JLabel balonEtiqueta = new JLabel("Balones");
+        balon.setTipoProducto(balonEtiqueta);
 
-        balon.setBounds(30, 40, 100, 100);
+        balonEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 20));
+        balonEtiqueta.setBounds(30, 40, 100, 100);
 
-        panelTexto.add(balon);
+        panelTexto.add(balonEtiqueta);
 
         JLabel precioBalon = new JLabel("Precio: 20€");
         precioBalon.setFont(new Font("Tahoma", Font.PLAIN, 18));
