@@ -151,7 +151,6 @@ public class Escaparate extends JFrame implements ActionListener {
 
         //------------------ balones
         JLabel balonEtiqueta = new JLabel("Balones");
-        balon.setTipoProducto(balonEtiqueta);
 
         balonEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 20));
         balonEtiqueta.setBounds(30, 40, 100, 100);
