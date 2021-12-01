@@ -1,13 +1,10 @@
 package tienda;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class Producto {
-    private Image imagen;
-    private JLabel tipoProducto;
+    private String imagen;
+    private String tipoProducto;
 
-    public Producto(Image imagen, JLabel tipoProducto) {
+    public Producto(String tipoProducto, String imagen) {
         this.imagen = imagen;
         this.tipoProducto = tipoProducto;
     }
@@ -15,19 +12,19 @@ public class Producto {
     public Producto() {
     }
 
-    public Image getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(Image imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
-    public JLabel getTipoProducto() {
+    public String getTipoProducto() {
         return tipoProducto;
     }
 
-    public void setTipoProducto(JLabel tipoProducto) {
+    public void setTipoProducto(String tipoProducto) {
         this.tipoProducto = tipoProducto;
     }
 }

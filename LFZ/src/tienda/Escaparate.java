@@ -31,30 +31,28 @@ public class Escaparate extends JFrame implements ActionListener {
     JComboBox cantidadPetos;
     JComboBox colorPeto;
 
-
-    JButton calcular;
-    JLabel total;
+    JButton pagar;
+    JScrollPane jsp,jsp2;
 
     public Escaparate() {
         precio = 0;
+        balon = new Producto("Balon", "pelota.jpg");
+        equipacion = new Producto("Equipacion", "equipacion.jpg");
+        peto = new Producto("Peto", "peto.jpg");
         initComponents();
-        balon = new Producto();
-        equipacion = new Producto();
-        peto = new Producto();
-
+        setVisible(true);
     }
 
     private void setVentana() {
         setSize(800, 800);
         setTitle("Escaparate");
-        this.setResizable(false);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     private void initComponents() {
         setVentana();
         setPaneles();
-        setEtiquetas();
         setLogo();
         setImagenes();
         setTexto();
@@ -78,20 +76,15 @@ public class Escaparate extends JFrame implements ActionListener {
         panelPrincipal.add(panelImagenes, BorderLayout.WEST);
 
         panelTexto = new JPanel();
-        //panelTexto.setLayout(new BoxLayout(panelTexto,BoxLayout.Y_AXIS));
         panelTexto.setLayout(null);
         panelTexto.setBackground(new Color(0xA0FFA0));
         panelTexto.setPreferredSize(new Dimension(this.getWidth() / 2, 0));
         panelPrincipal.add(panelTexto, BorderLayout.EAST);
 
-    }
-
-    private void setEtiquetas() {
-        etiqueta = new JLabel("Tienda", SwingConstants.CENTER);
-        Font font = new Font("Agency FB", Font.BOLD, 50);
-        etiqueta.setFont(font);
-        etiqueta.setOpaque(true);
-        panelTitulo.add(etiqueta);
+        /*jsp = new JScrollPane(panelImagenes, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        panelPrincipal.add(jsp);
+        jsp2 = new JScrollPane(panelTexto, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        panelPrincipal.add(jsp2);*/
     }
 
     private void setLogo() {
@@ -102,7 +95,7 @@ public class Escaparate extends JFrame implements ActionListener {
 
     private void setImagenes() {
         JLabel imagen = new JLabel();
-        ImageIcon pelota = new ImageIcon("pelota.jpg");
+        ImageIcon pelota = new ImageIcon(balon.getImagen());
 
         imagen.setBounds(0, 200, 100, 100);
         imagen.setIcon(new ImageIcon(pelota.getImage()));
@@ -114,20 +107,20 @@ public class Escaparate extends JFrame implements ActionListener {
         panelImagenes.add(imagen);
 
         imagen = new JLabel();
-        ImageIcon equipacion = new ImageIcon("equipacion.jpg");
+        ImageIcon eq = new ImageIcon(equipacion.getImagen());
         imagen.setBounds(0, 600, 100, 100);
-        imagen.setIcon(new ImageIcon(equipacion.getImage()));
-        imagen.setIcon(new ImageIcon(equipacion.getImage().
+        imagen.setIcon(new ImageIcon(eq.getImage()));
+        imagen.setIcon(new ImageIcon(eq.getImage().
                 getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_SMOOTH)));
 
         panelImagenes.add(Box.createRigidArea(new Dimension(30, 140)));
         panelImagenes.add(imagen);
 
         imagen = new JLabel();
-        ImageIcon peto = new ImageIcon("peto.jpg");
+        ImageIcon pe = new ImageIcon(peto.getImagen());
         imagen.setBounds(0, 1200, 100, 100);
-        imagen.setIcon(new ImageIcon(peto.getImage()));
-        imagen.setIcon(new ImageIcon(peto.getImage().
+        imagen.setIcon(new ImageIcon(pe.getImage()));
+        imagen.setIcon(new ImageIcon(pe.getImage().
                 getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_SMOOTH)));
 
         panelImagenes.add(Box.createRigidArea(new Dimension(30, 140)));
@@ -136,21 +129,25 @@ public class Escaparate extends JFrame implements ActionListener {
 
     }
 
-    private void calcularTotal(){
+    private void calcularTotal() {
         this.precio = 0;
-        this.precio += Integer.parseInt(cantidadBalones.getSelectedItem().toString())*20;
-        this.precio += Integer.parseInt(cantidadCamisetas.getSelectedItem().toString())*20;
-        this.precio += Integer.parseInt(cantidadPantalones.getSelectedItem().toString())*10;
-        this.precio += Integer.parseInt(cantidadMedias.getSelectedItem().toString())*5;
-        this.precio += Integer.parseInt(cantidadPetos.getSelectedItem().toString())*8;
-
-
-        total.setText("Total: " + precio + "€");
+        this.precio += Integer.parseInt(cantidadBalones.getSelectedItem().toString()) * 20;
+        this.precio += Integer.parseInt(cantidadCamisetas.getSelectedItem().toString()) * 20;
+        this.precio += Integer.parseInt(cantidadPantalones.getSelectedItem().toString()) * 10;
+        this.precio += Integer.parseInt(cantidadMedias.getSelectedItem().toString()) * 5;
+        this.precio += Integer.parseInt(cantidadPetos.getSelectedItem().toString()) * 8;
     }
+
     private void setTexto() {
+        //------------------- tienda
+        etiqueta = new JLabel("Tienda", SwingConstants.CENTER);
+        Font font = new Font("Agency FB", Font.BOLD, 50);
+        etiqueta.setFont(font);
+        etiqueta.setOpaque(true);
+        panelTitulo.add(etiqueta);
 
         //------------------ balones
-        JLabel balonEtiqueta = new JLabel("Balones");
+        JLabel balonEtiqueta = new JLabel(balon.getTipoProducto() + "es");
 
         balonEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 20));
         balonEtiqueta.setBounds(30, 40, 100, 100);
@@ -169,12 +166,12 @@ public class Escaparate extends JFrame implements ActionListener {
 
         //------------------ equipaciones
 
-        JLabel equipacion = new JLabel("Equipaciones");
-        equipacion.setFont(new Font("Tahoma", Font.BOLD, 20));
+        JLabel eqLbl = new JLabel(equipacion.getTipoProducto() + "es");
+        eqLbl.setFont(new Font("Tahoma", Font.BOLD, 20));
 
-        equipacion.setBounds(30, 230, 150, 100);
+        eqLbl.setBounds(30, 230, 150, 100);
 
-        panelTexto.add(equipacion);
+        panelTexto.add(eqLbl);
 
         JLabel precioCamiseta = new JLabel("Camiseta: 20€");
         JLabel precioPantalon = new JLabel("Pantalón: 10€");
@@ -209,7 +206,6 @@ public class Escaparate extends JFrame implements ActionListener {
         panelTexto.add(cantidadMedias);
 
 
-
         String colores[] = {"blanco", "negro", "azul", "verde", "amarillo", "rojo"};
 
         colorCamiseta = new JComboBox(colores);
@@ -232,12 +228,12 @@ public class Escaparate extends JFrame implements ActionListener {
         //------------------ petos
 
 
-        JLabel peto = new JLabel("Petos");
-        peto.setFont(new Font("Tahoma", Font.BOLD, 20));
+        JLabel petoLbl = new JLabel(peto.getTipoProducto() + "s");
+        petoLbl.setFont(new Font("Tahoma", Font.BOLD, 20));
 
-        peto.setBounds(30, 480, 150, 100);
+        petoLbl.setBounds(30, 480, 150, 100);
 
-        panelTexto.add(peto);
+        panelTexto.add(petoLbl);
 
         JLabel precioPeto = new JLabel("Precio: 8€");
         precioPeto.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -258,16 +254,11 @@ public class Escaparate extends JFrame implements ActionListener {
         colorPeto.setBounds(250, 570, 100, 20);
         panelTexto.add(colorPeto);
 
-        calcular = new JButton("Calcular Total");
-        calcular.setBounds(30,610,160,50);
-        calcular.addActionListener(this);
-        panelTexto.add(calcular);
+        pagar = new JButton("Pagar");
+        pagar.setBounds(30, 610, 350, 30);
+        pagar.addActionListener(this);
+        panelTexto.add(pagar);
 
-        total = new JLabel("Total: " + precio + "€");
-        total.setFont(new Font("Tahoma", Font.PLAIN, 23));
-        total.setBounds(230, 585, 150, 100);
-        total.setVisible(false);
-        panelTexto.add(total);
 
     }
 
@@ -278,32 +269,62 @@ public class Escaparate extends JFrame implements ActionListener {
                 colorCamiseta.setVisible(true);
             } else {
                 colorCamiseta.setVisible(false);
+                JOptionPane.showMessageDialog(null,
+                        "Camiseta eliminada correctamente de la cesta",
+                        "Producto eliminado",
+                        JOptionPane.PLAIN_MESSAGE);
             }
         } else if (e.getSource() == cantidadPantalones) {
             if (Integer.parseInt(cantidadPantalones.getSelectedItem().toString()) > 0) {
                 colorPantalon.setVisible(true);
             } else {
                 colorPantalon.setVisible(false);
+                JOptionPane.showMessageDialog(null,
+                        "Pantalón correctamente de la cesta",
+                        "Producto eliminado",
+                        JOptionPane.PLAIN_MESSAGE);
             }
-            this.precio = precio + Integer.parseInt(cantidadPantalones.getSelectedItem().toString())*10;
+            this.precio = precio + Integer.parseInt(cantidadPantalones.getSelectedItem().toString()) * 10;
         } else if (e.getSource() == cantidadMedias) {
             if (Integer.parseInt(cantidadMedias.getSelectedItem().toString()) > 0) {
                 colorMedias.setVisible(true);
             } else {
                 colorMedias.setVisible(false);
+                JOptionPane.showMessageDialog(null,
+                        "Medias eliminadas correctamente de la cesta",
+                        "Producto eliminado",
+                        JOptionPane.PLAIN_MESSAGE);
             }
-        }
-        else if (e.getSource() == cantidadPetos) {
+        } else if (e.getSource() == cantidadPetos) {
             if (Integer.parseInt(cantidadPetos.getSelectedItem().toString()) > 0) {
                 colorPeto.setVisible(true);
             } else {
                 colorPeto.setVisible(false);
+                JOptionPane.showMessageDialog(null,
+                        "Petos eliminados correctamente de la cesta",
+                        "Producto eliminado",
+                        JOptionPane.PLAIN_MESSAGE);
             }
-            this.precio = precio + Integer.parseInt(cantidadMedias.getSelectedItem().toString())*8;
-        }
-        else if (e.getSource() == calcular){
+            this.precio = precio + Integer.parseInt(cantidadMedias.getSelectedItem().toString()) * 8;
+        } else if (e.getSource() == pagar) {
             calcularTotal();
-            total.setVisible(true);
+            if (this.precio > 0) {
+                int respuesta = JOptionPane.showConfirmDialog(null,
+                        "Tu cesta suma un total de " + this.precio + "€.\n¿Quieres proceder con el pago?",
+                        "Pagar",
+                        JOptionPane.YES_NO_OPTION);
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    JOptionPane.showMessageDialog(null,
+                            "Pago realizado correctamente.",
+                            "",
+                            JOptionPane.PLAIN_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "No has añadido productos a la cesta",
+                        "Cesta vacía",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }
