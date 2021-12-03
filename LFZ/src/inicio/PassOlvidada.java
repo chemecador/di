@@ -11,7 +11,7 @@ public class PassOlvidada extends JFrame implements ActionListener {
     JPanel panelPrincipal;
     JTextField correoTxt;
     JLabel correoLbl;
-    JButton passOlv;
+    JButton passOlv, atras;
 
     public PassOlvidada() {
         initComponents();
@@ -46,6 +46,10 @@ public class PassOlvidada extends JFrame implements ActionListener {
 
     private void setBotones() {
 
+        atras = new JButton ("Atrás");
+        atras.setBounds(600,600,80,60);
+        atras.addActionListener(this);
+        panelPrincipal.add(atras);
 
         passOlv = new JButton("Recuperar Contraseña");
         passOlv.setBounds(100, 300, 500, 40);
@@ -98,6 +102,9 @@ public class PassOlvidada extends JFrame implements ActionListener {
                     "La dirección de correo electrónico no es correcta",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
+        }
+        if (e.getSource() == atras){
+            dispose();
         }
     }
 }

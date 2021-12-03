@@ -32,7 +32,7 @@ public class Escaparate extends JFrame implements ActionListener {
     JComboBox colorPeto;
 
     JButton pagar;
-    JScrollPane jsp,jsp2;
+    JScrollPane jsp;
 
     public Escaparate() {
         precio = 0;
@@ -62,7 +62,7 @@ public class Escaparate extends JFrame implements ActionListener {
         panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.setBackground(Color.BLACK);
-        panelPrincipal.setPreferredSize(new Dimension(0, 0));
+        panelPrincipal.setPreferredSize(new Dimension(800,1500));
         add(panelPrincipal);
 
         panelTitulo = new JPanel();
@@ -81,10 +81,9 @@ public class Escaparate extends JFrame implements ActionListener {
         panelTexto.setPreferredSize(new Dimension(this.getWidth() / 2, 0));
         panelPrincipal.add(panelTexto, BorderLayout.EAST);
 
-        /*jsp = new JScrollPane(panelImagenes, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        panelPrincipal.add(jsp);
-        jsp2 = new JScrollPane(panelTexto, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        panelPrincipal.add(jsp2);*/
+        jsp = new JScrollPane(panelPrincipal, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        //jsp.setPreferredSize(new Dimension(900,900));
+        add(jsp);
     }
 
     private void setLogo() {
@@ -150,7 +149,8 @@ public class Escaparate extends JFrame implements ActionListener {
         JLabel balonEtiqueta = new JLabel(balon.getTipoProducto() + "es");
 
         balonEtiqueta.setFont(new Font("Tahoma", Font.BOLD, 20));
-        balonEtiqueta.setBounds(30, 40, 100, 100);
+        //balonEtiqueta.setBounds(30, 40, 100, 100);
+        balonEtiqueta.setBounds(30,900,100,100);
 
         panelTexto.add(balonEtiqueta);
 

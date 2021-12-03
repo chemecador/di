@@ -9,6 +9,10 @@ import javax.swing.*;
 
 public class Inicio extends JFrame implements ActionListener {
 
+    /**
+     * todo: scrollpane en tienda
+     * 
+     * */
 
     JPanel panelPrincipal;
     JTextField userTxt, emailRegTxt;
