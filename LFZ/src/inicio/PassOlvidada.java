@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 
 public class PassOlvidada extends JFrame implements ActionListener {
 
-
     JPanel panelPrincipal;
     JTextField correoTxt;
     JLabel correoLbl;
@@ -15,14 +14,20 @@ public class PassOlvidada extends JFrame implements ActionListener {
 
     public PassOlvidada() {
         initComponents();
-
+        setVisible(true);
     }
 
     private void setVentana() {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        JLabel emptyLabel = new JLabel("");
+        emptyLabel.setPreferredSize(new Dimension( (int)dimension.getWidth() / 2, (int)dimension.getHeight()/2 ));
+        getContentPane().add(emptyLabel, BorderLayout.CENTER);
+        setLocation((int)dimension.getWidth()/4, (int)dimension.getHeight()/4);
         setSize(800, 800);
         setTitle("LFZ");
         this.setResizable(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
     }
 
     private void initComponents() {

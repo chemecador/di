@@ -11,8 +11,7 @@ public class Inicio extends JFrame implements ActionListener {
 
     /**
      * todo: scrollpane en tienda
-     * 
-     * */
+     */
 
     JPanel panelPrincipal;
     JTextField userTxt, emailRegTxt;
@@ -34,6 +33,11 @@ public class Inicio extends JFrame implements ActionListener {
     }
 
     private void initComponents() {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        JLabel emptyLabel = new JLabel("");
+        emptyLabel.setPreferredSize(new Dimension( (int)dimension.getWidth() / 2, (int)dimension.getHeight()/2 ));
+        getContentPane().add(emptyLabel, BorderLayout.CENTER);
+        setLocation((int)dimension.getWidth()/4, (int)dimension.getHeight()/4);
         setVentana();
         setPaneles();
         setEtiquetas();
@@ -42,6 +46,7 @@ public class Inicio extends JFrame implements ActionListener {
         setTexto();
         setBotones();
     }
+
 
     private void setPaneles() {
         panelPrincipal = new JPanel();
@@ -131,11 +136,21 @@ public class Inicio extends JFrame implements ActionListener {
     }
 
     private void setLogo() {
-
+        Toolkit miSistema = Toolkit.getDefaultToolkit();
+        Image logo = miSistema.getImage("logo.png");
+        this.setIconImage(logo);
     }
 
     private void setImagenes() {
 
+        JLabel imagen = new JLabel();
+        ImageIcon pelota = new ImageIcon("logo.png");
+
+        imagen.setBounds(50, 50, 70, 70);
+        imagen.setIcon(new ImageIcon(pelota.getImage()));
+        imagen.setIcon(new ImageIcon(pelota.getImage().
+                getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_SMOOTH)));
+        panelPrincipal.add(imagen);
     }
 
     private void setTexto() {
@@ -149,19 +164,30 @@ public class Inicio extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == passOlv) {
-            PassOlvidada po = new PassOlvidada();
-            po.setVisible(true);
+            new PassOlvidada();
         } else if (e.getSource() == is) {
             if (users.iniciarSesion(userTxt.getText(), new String(passTxt.getPassword()))) {
-                Escaparate esc = new Escaparate();
-                esc.setVisible(true);
+                new Escaparate(userTxt.getText());
+            }
+        } else if (e.getSource() == reg && emailRegTxt.getText().contains("@") && emailRegTxt.getText().contains(".")) {
+            if (new String(passRegTxt.getPassword()).length() > 0) {
+
+                users.registro(emailRegTxt.getText(), new String(passRegTxt.getPassword()));
+                JOptionPane.showMessageDialog(null,
+                        "Registro realizado correctamente",
+                        "Usuario registrado",
+                        JOptionPane.PLAIN_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "La contraseña está vacía",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
         } else if (e.getSource() == reg) {
-            users.registro(emailRegTxt.getText(), new String(passRegTxt.getPassword()));
             JOptionPane.showMessageDialog(null,
-                    "Registro realizado correctamente",
-                    "Usuario registrado",
-                    JOptionPane.PLAIN_MESSAGE);
+                    "La dirección de correo electrónico no es correcta",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 }

@@ -21,16 +21,9 @@ public class Usuarios {
     public void registro(String user, String pass) {
         users.add(user);
         passwords.add(pass);
-        System.out.println("Ahora los usuarios son : ");
-        int indice = 0;
-        for (String i : users){
-            System.out.println("Usuario: " + i + " contraseña: " + passwords.get(indice));
-            indice++;
-        }
     }
 
     public boolean iniciarSesion(String user, String pass) {
-        System.out.println("la clave es " + pass);
         if (users.contains(user)) {
             int indice = users.indexOf(user);
             if (passwords.get(indice).equals(pass)) {
