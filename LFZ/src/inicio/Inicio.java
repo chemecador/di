@@ -8,11 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Inicio extends JFrame implements ActionListener {
-
-    /**
-     * todo: scrollpane en tienda
-     */
-
     JPanel panelPrincipal;
     JTextField userTxt, emailRegTxt;
     JPasswordField passTxt, passRegTxt;
@@ -35,15 +30,14 @@ public class Inicio extends JFrame implements ActionListener {
     private void initComponents() {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         JLabel emptyLabel = new JLabel("");
-        emptyLabel.setPreferredSize(new Dimension( (int)dimension.getWidth() / 2, (int)dimension.getHeight()/2 ));
+        emptyLabel.setPreferredSize(new Dimension((int) dimension.getWidth() / 2, (int) dimension.getHeight() / 2));
         getContentPane().add(emptyLabel, BorderLayout.CENTER);
-        setLocation((int)dimension.getWidth()/4, (int)dimension.getHeight()/4);
+        setLocation((int) dimension.getWidth() / 4, (int) dimension.getHeight() / 4);
         setVentana();
         setPaneles();
         setEtiquetas();
         setLogo();
         setImagenes();
-        setTexto();
         setBotones();
     }
 
@@ -59,14 +53,12 @@ public class Inicio extends JFrame implements ActionListener {
 
     private void setBotones() {
         is = new JButton("Iniciar Sesión");
-        //is.setPreferredSize(new Dimension(40, 40));
         is.setBounds(450, 250, 150, 30);
 
         passOlv = new JButton("He olvidado mi contraseña");
         passOlv.setBounds(100, 300, 500, 25);
 
         reg = new JButton("Registrarse");
-        //is.setPreferredSize(new Dimension(40, 40));
         reg.setBounds(450, 620, 150, 30);
 
 
@@ -151,10 +143,6 @@ public class Inicio extends JFrame implements ActionListener {
         imagen.setIcon(new ImageIcon(pelota.getImage().
                 getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_SMOOTH)));
         panelPrincipal.add(imagen);
-    }
-
-    private void setTexto() {
-
     }
 
     public static void main(String[] args) {

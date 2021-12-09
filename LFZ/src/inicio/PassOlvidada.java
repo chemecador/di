@@ -34,9 +34,6 @@ public class PassOlvidada extends JFrame implements ActionListener {
         setVentana();
         setPaneles();
         setEtiquetas();
-        setLogo();
-        setImagenes();
-        setTexto();
         setBotones();
     }
 
@@ -45,12 +42,9 @@ public class PassOlvidada extends JFrame implements ActionListener {
         panelPrincipal.setLayout(null);
         panelPrincipal.setBackground(new Color(0xA0FFA0));
         add(panelPrincipal);
-
-
     }
 
     private void setBotones() {
-
         atras = new JButton ("Atrás");
         atras.setBounds(600,600,80,60);
         atras.addActionListener(this);
@@ -64,32 +58,15 @@ public class PassOlvidada extends JFrame implements ActionListener {
 
     private void setEtiquetas() {
         correoLbl = new JLabel("Introduce tu email:", SwingConstants.RIGHT);
-
         correoTxt = new JTextField();
 
         correoTxt.setBounds(400, 120, 200, 30);
 
-
         correoLbl.setBounds(100, 120, 200, 30);
         correoLbl.setFont(new Font("Agency FB", Font.PLAIN, 30));
 
-
-
         panelPrincipal.add(correoLbl);
-
         panelPrincipal.add(correoTxt);
-    }
-
-    private void setLogo() {
-
-    }
-
-    private void setImagenes() {
-
-    }
-
-    private void setTexto() {
-
     }
 
     @Override

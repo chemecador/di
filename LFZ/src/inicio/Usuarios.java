@@ -10,8 +10,6 @@ public class Usuarios {
     Usuarios() {
         users = new ArrayList<>();
         passwords = new ArrayList<>();
-        users.add("");
-        passwords.add("");
         users.add("root");
         passwords.add("root");
         users.add("admin");
